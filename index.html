@@ -65,6 +65,14 @@
                 <span class="logo-text">KhaliMero</span>
             </div>
             <div class="header-right">
+                <!-- Bouton pour vider le chat actif -->
+                <button class="icon-btn" onclick="viderChatActif()" title="Vider la discussion en cours">
+                    <span class="material-symbols-outlined">cleaning_services</span>
+                </button>
+                <!-- Bouton basculement Thème Clair/Sombre -->
+                <button class="icon-btn" onclick="basculerTheme()" title="Changer de thème">
+                    <span class="material-symbols-outlined" id="theme-icon">dark_mode</span>
+                </button>
                 <div class="khalimero-logo-badge" title="KhaliMero AI">
                     <svg viewBox="0 0 100 100" class="khalimero-svg-logo">
                         <defs>
@@ -87,6 +95,16 @@
 
         <!-- SAISIE UTILISATEUR FIXE -->
         <div id="input-container">
+            <!-- Sélecteur de style pour les images (Apparaît en mode image) -->
+            <div id="image-style-bar" class="image-style-bar" style="display: none;">
+                <span class="style-label">🎨 Style :</span>
+                <button class="style-pill active" data-style="photorealistic">Photoréaliste 4K</button>
+                <button class="style-pill" data-style="cyberpunk">Cyberpunk Néon</button>
+                <button class="style-pill" data-style="anime">Anime / Manga</button>
+                <button class="style-pill" data-style="oil">Peinture à l'huile</button>
+                <button class="style-pill" data-style="3d">Design 3D Pixar</button>
+            </div>
+
             <div id="preview-box" style="display: none;">
                 <img id="image-preview" src="" alt="Aperçu">
                 <span id="remove-preview" onclick="supprimerImage()">✕</span>
@@ -102,7 +120,6 @@
                             <span class="material-symbols-outlined">photo_library</span>
                             <span>Choisir une image</span>
                         </label>
-                        <!-- Bouton caméra forcé -->
                         <label for="camera-file-input" class="dropdown-item">
                             <span class="material-symbols-outlined">photo_camera</span>
                             <span>Prendre une photo</span>
@@ -112,11 +129,9 @@
 
                 <!-- INPUTS FICHIERS MASQUÉS -->
                 <input type="file" id="image-file-input" accept="image/*" style="display: none;" onchange="chargerImage(event)">
-                
-                <!-- Utilisation de image/jpeg et capture="environment" pour forcer la caméra -->
                 <input type="file" id="camera-file-input" accept="image/jpeg" capture="environment" style="display: none;" onchange="chargerImage(event)">
 
-                <textarea id="user-input" placeholder="Posez votre question à KhaliMero..." rows="1" oninput="ajusterHauteur(this)"></textarea>
+                <textarea id="user-input" placeholder="Posez votre question à KhaliMero..." rows="1" oninput="ajusterHauteur(this); mettreAJourCompteur(this);"></textarea>
 
                 <button class="icon-btn" id="mic-btn" title="Dictée vocale" onclick="basculerDictéeVocale()">
                     <span class="material-symbols-outlined">mic</span>
@@ -126,7 +141,11 @@
                     <span class="material-symbols-outlined">arrow_upward</span>
                 </button>
             </div>
-            <p class="footer-note">KhaliMero peut faire des erreurs. Vérifiez les informations importantes.</p>
+            <!-- Compteur de caractères -->
+            <div class="input-footer-info">
+                <span id="char-counter">0 / 2000</span>
+                <p class="footer-note" style="margin:0;">KhaliMero peut faire des erreurs.</p>
+            </div>
         </div>
     </main>
 
@@ -150,4 +169,5 @@
 
     <script src="script.js"></script>
 </body>
-</html>
+    </html>
+    

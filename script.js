@@ -1,5 +1,5 @@
 // --- CONFIGURATION GROQ & IDENTITÉ ---
-const GROQ_API_KEY = "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"; 
+const GROQ_API_KEY = "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"; 
 
 const MODELES_TEXTE = [
     "qwen/qwen3.8-27b",
